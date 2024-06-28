@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml" alignment="CENTER" maxHeight="600.0" maxWidth="979.0" prefHeight="600.0" prefWidth="979.0"
+      spacing="10.0"
+      fx:controller="com.ppsoft1991.chatViewTool.controller.ChatAppController">
+    <TableView fx:id="tableVw" onMouseClicked="#showChatWindow" prefHeight="709.0" prefWidth="979.0">
+        <columns>
+            <TableColumn fx:id="image" prefWidth="60.0" text="头像"/>
+            <TableColumn fx:id="nickName" prefWidth="110.0" text="昵称"/>
+            <TableColumn fx:id="nameAlias" prefWidth="110.0" text="备注"/>
+            <TableColumn fx:id="wechatId" prefWidth="99.0" text="微信ID"/>
+            <TableColumn fx:id="userName" prefWidth="96.0" text="用户名"/>
+            <TableColumn fx:id="strContent" maxWidth="400.0" prefWidth="321.0" text="消息内容"/>
+        </columns>
+    </TableView>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+        <children>
+            <HBox prefHeight="26.0" prefWidth="969.0">
+                <children>
+                    <Button mnemonicParsing="false" onAction="#onButtonClickDec" prefHeight="20.0" prefWidth="100.0" text="数据库解密" />
+                    <Button onAction="#onMsgInfoButtonClick" prefHeight="24.0" prefWidth="104.0" text="查看数据库">
+                        <HBox.margin>
+                            <Insets left="2.0" />
+                        </HBox.margin></Button>
+                </children>
+            </HBox>
+            <TextField fx:id="filterText" layoutX="217.0" prefHeight="26.0" prefWidth="176.0" promptText="输入你要检索的内容" />
+            <Button layoutX="396.0" mnemonicParsing="false" onAction="#onSearchButtonClicked" prefHeight="26.0" prefWidth="87.0" text="内容检索" />
+            <CheckBox fx:id="loadHd" layoutX="550.0" layoutY="5.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="133.0" text="加载头像" visible="false" />
+            <Button layoutX="650.0" mnemonicParsing="false" onAction="#onUserChat" prefHeight="26.0" prefWidth="87.0" text="进入聊天" />
+        </children>
+        <VBox.margin>
+            <Insets left="10.0" />
+        </VBox.margin></AnchorPane>
+    <AnchorPane layoutX="30.0" layoutY="365.0" prefHeight="20.0" prefWidth="200.0">
+        <children>
+            <HBox layoutX="11.0" prefHeight="16.0" prefWidth="289.0">
+                <children>
+                    <Label fx:id="labelMsg" prefWidth="176.0" />
+                </children>
+            </HBox>
+        </children>
+    </AnchorPane>
+</VBox>

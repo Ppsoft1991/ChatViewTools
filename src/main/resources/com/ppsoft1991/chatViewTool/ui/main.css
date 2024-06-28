@@ -1,0 +1,11 @@
+#tableVw:focused {
+    -fx-background-color: -fx-box-border, -fx-control-inner-background;
+    -fx-background-insets: 0, 1;
+    -fx-padding: 1;
+}
+.root{
+    -fx-font-size: 10pt;
+}
+#LabelMsg{
+    -fx-label-padding: -100;
+}

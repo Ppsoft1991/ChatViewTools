@@ -1,0 +1,77 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.javamodularity.moduleplugin' version '1.8.12'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'org.beryx.jlink' version '2.25.0'
+}
+
+group 'com.ppsoft1991.chatViewTool'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.10.0'
+}
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+application {
+    mainModule = 'com.ppsoft1991.chatViewTool'
+    mainClass = 'com.ppsoft1991.chatViewTool.ChatAppApplication'
+}
+
+javafx {
+    version = '17.0.6'
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.media']
+}
+
+dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
+    implementation 'org.xerial:sqlite-jdbc:3.34.0'
+    implementation 'org.springframework:spring-jdbc:5.1.10.RELEASE'
+    implementation 'org.springframework:spring-tx:5.1.10.RELEASE'
+    implementation 'com.mchange:c3p0:0.9.5.5'
+    implementation 'com.mchange:mchange-commons-java:0.2.20'
+    implementation 'com.github.albfernandez:juniversalchardet:2.4.0'
+    implementation 'com.google.protobuf:protobuf-java:4.27.1'
+
+    // Include only the javase module of ZXing and exclude core to avoid conflicts
+    implementation('com.google.zxing:javase:3.3.3') {
+        exclude group: 'com.google.zxing', module: 'core'
+    }
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+tasks.withType(Delete) {
+    delete rootProject.buildDir
+}
+
+jlink {
+    imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages', '--ignore-signing-information']
+    launcher {
+        name = 'app'
+    }
+}
+
+jlinkZip {
+    group = 'distribution'
+}

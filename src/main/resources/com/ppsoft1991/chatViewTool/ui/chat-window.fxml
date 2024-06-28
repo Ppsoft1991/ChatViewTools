@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml" focusTraversable="true" prefHeight="700.0" maxWidth="Infinity"
+            fx:controller="com.ppsoft1991.chatViewTool.controller.ChatController">
+    <center>
+        <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER">
+            <content>
+                <VBox fx:id="listMsg" alignment="TOP_CENTER"/>
+            </content>
+        </ScrollPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" spacing="10">
+            <Button fx:id="lastButton" disable="true" mnemonicParsing="false"
+                    onAction="#onLastButtonClicked" text="上一页"/>
+            <Button fx:id="nextButton" disable="true" mnemonicParsing="false"
+                    onAction="#onNextButtonClicked" text="下一页"/>
+            <Label fx:id="labelPage" layoutX="12.0" prefWidth="118.0"
+                   text="当前第1页，共1页"/>
+            <Label fx:id="searchNumber" prefHeight="18.0" prefWidth="118.0"/>
+            <TextField fx:id="FieldText"  prefHeight="26.0" prefWidth="110.0"
+                       promptText="你要搜索的内容"/>
+            <Button fx:id="searchButton" mnemonicParsing="false"
+                    onAction="#onSearchButtonClick" text="搜索"/>
+            <Button fx:id="jumoSearchButton" mnemonicParsing="false"
+                    onAction="#onNextSearchButtonClick" text="下一个"/>
+            <Button fx:id="jumpButton" mnemonicParsing="false"
+                    onAction="#onJumpButtonClick" text="跳转"/>
+        </HBox>
+    </bottom>
+</BorderPane>
